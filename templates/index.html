@@ -7,8 +7,21 @@
 </head>
 <body>
     <h1>BOGGLE</h1>
+    <section id="boggle">
+        <table class="board">
+            <tbody>
+                {% for row in board%}
+                <tr>
+                    {% for letter in row%}
+                    <td>{{letter}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
     <script src="/static/boggle.js"></script>
     <script src="https://unpkg.com/axios@1.6.8/dist/axios.min.js"></script>
-    <script src="http://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/jquery"></script>
 </body>
 </html>
