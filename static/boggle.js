@@ -1,7 +1,15 @@
 let score = 0;
+let clockMax = 60;
+let timer = setInterval(countDown, 1000);
 
-function userWordListAdd(word){
-   $(".user-list").append($("<li>", {text: word})).show();
+function addTimerCountdown(){
+    $(".timer").text(`Time Remaining: ${clockMax} seconds.`)
+}
+
+function userWordListAdd(word) {
+  $(".user-list")
+    .append($("<li>", { text: word }))
+    .show();
 }
 
 function msgAppend(msg, cls) {
@@ -29,6 +37,13 @@ $(".word-submit").on("submit", async function (evt) {
     msgAppend(`Congrats! ${word} is a valid word`, "success");
     score += word.length;
     scoreBoard();
-   }
-  
+  }
 });
+
+async function countDown(){
+    clockMax -= 1;
+    addTimerCountdown();
+    if (clockMax === 0){
+        clearInterval(timer);
+    }
+}
