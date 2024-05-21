@@ -17,7 +17,7 @@ function msgAppend(msg, cls) {
 }
 
 function scoreBoard() {
-  $(".score").text(`Player Score: ${score} points`);
+  $(".score").text(`Score: ${score} points`);
 }
 
 $(".word-submit").on("submit", async function (evt) {
@@ -45,5 +45,6 @@ async function countDown(){
     addTimerCountdown();
     if (clockMax === 0){
         clearInterval(timer);
+        msgAppend(`FINAL SCORE is ${score}`, "score")
     }
 }
