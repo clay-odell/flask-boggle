@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/boggle.css">
     <title>Flask Boggle</title>
   </head>
   <body>
@@ -23,12 +24,18 @@
         <input type="text" name="word" id="word-input" />
         <button>SUBMIT WORD</button>
       </form>
-      <section id="scoreboard">
+      <div id="scoreboard">
         <p class="score"></p>
-      </section>
-      <section id="msg-section">
+      </div>
+      <div id="msg-section">
         <p class="msg"></p>
-      </section>
+      </div>
+      <div id="word-list">
+        <ul class="user-list">
+            <h3>User Wordlist</h3>
+        </ul>
+      </div>
+
     </section>
     <script src="https://unpkg.com/axios@1.6.8/dist/axios.min.js"></script>
     <script src="https://unpkg.com/jquery"></script>

@@ -1,10 +1,15 @@
 let score = 0;
+
+function userWordListAdd(word){
+   $(".user-list").append($("<li>", {text: word})).show();
+}
+
 function msgAppend(msg, cls) {
-  $(".msg", this.board).text(msg).removeClass().addClass(`msg ${cls}`);
+  $(".msg").text(msg).removeClass().addClass(`msg ${cls}`);
 }
 
 function scoreBoard() {
-  $(".score").text(`Your word is worth ${score} points!`);
+  $(".score").text(`Player Score: ${score} points`);
 }
 
 $(".word-submit").on("submit", async function (evt) {
@@ -20,6 +25,7 @@ $(".word-submit").on("submit", async function (evt) {
       "err"
     );
   } else {
+    userWordListAdd(word);
     msgAppend(`Congrats! ${word} is a valid word`, "success");
     score += word.length;
     scoreBoard();
