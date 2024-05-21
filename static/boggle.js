@@ -22,7 +22,7 @@ $(".word-submit").on("submit", async function (evt) {
   } else {
     msgAppend(`Congrats! ${word} is a valid word`, "success");
     score += word.length;
-    console.log(scoreBoard());
+    scoreBoard();
    }
   
 });
