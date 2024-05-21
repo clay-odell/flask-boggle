@@ -19,13 +19,16 @@
                 {% endfor %}
             </tbody>
         </table>
-        <form method="POST" class="word-submit">
-            <input type="text" name="word" class="word">
+        <form  method="POST" class="word-submit">
+            <input type="text" name="word" id="word-input">
             <button>SUBMIT WORD</button>
         </form>
+        <section id="msg-section">
+            <p class="msg"></p>
+        </section>
     </section>
-    <script src="/static/boggle.js"></script>
     <script src="https://unpkg.com/axios@1.6.8/dist/axios.min.js"></script>
     <script src="https://unpkg.com/jquery"></script>
+    <script src="/static/boggle.js"></script>
 </body>
 </html>
