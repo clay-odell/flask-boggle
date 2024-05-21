@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flask Boggle</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>BOGGLE</h1>
     <section id="boggle">
-        <table class="board">
-            <tbody>
-                {% for row in board%}
-                <tr>
-                    {% for letter in row%}
-                    <td>{{letter}}</td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <form  method="POST" class="word-submit">
-            <input type="text" name="word" id="word-input">
-            <button>SUBMIT WORD</button>
-        </form>
-        <section id="msg-section">
-            <p class="msg"></p>
-        </section>
+      <table class="board">
+        <tbody>
+          {% for row in board%}
+          <tr>
+            {% for letter in row%}
+            <td>{{letter}}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <form method="POST" class="word-submit">
+        <input type="text" name="word" id="word-input" />
+        <button>SUBMIT WORD</button>
+      </form>
+      <section id="scoreboard">
+        <p class="score"></p>
+      </section>
+      <section id="msg-section">
+        <p class="msg"></p>
+      </section>
     </section>
     <script src="https://unpkg.com/axios@1.6.8/dist/axios.min.js"></script>
     <script src="https://unpkg.com/jquery"></script>
     <script src="/static/boggle.js"></script>
-</body>
+  </body>
 </html>
