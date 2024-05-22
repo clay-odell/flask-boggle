@@ -12,6 +12,7 @@ boggle_game = Boggle()
 
 @app.route('/')
 def home():
+    """Shows the Boggle Game Board"""
     board = boggle_game.make_board()
     session['board'] = board
     highscore = session.get('highscore', 0)
@@ -20,6 +21,7 @@ def home():
 
 @app.route('/word-submit')
 def word_submit():
+    """Checks to see if word is in dict"""
     board = session["board"]
     word = request.args["word"]
     response = boggle_game.check_valid_word(board, word)
@@ -27,6 +29,7 @@ def word_submit():
 
 @app.route('/post-score', methods=["POST"])
 def post_score():
+    """Receives score, updates highscore and number of attempts as necessary"""
     score = request.json["score"]
     highscore = int(session.get("highscore", 0))
     attempts = session.get("attempts", 0)
