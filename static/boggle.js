@@ -1,5 +1,5 @@
 let score = 0;
-let clockMax = 15;
+let clockMax = 60;
 let timer = setInterval(countDown, 1000);
 let words = new Set();
 let board = $("#board");
@@ -70,7 +70,7 @@ async function postScore(score){
    const response = await axios.post("/post-score", {score: score});
    if (response.data.newRecord){
     msgAppend(`New Record: ${score}`, "msg");
-    $(".highscore").text(`High Score: ${score}`);
+    $(".highscore").text(`High Score: ${score} points`);
     } else {
     msgAppend(`Final Score: ${score}`, "msg")
    }
