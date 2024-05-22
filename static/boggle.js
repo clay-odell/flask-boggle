@@ -61,6 +61,7 @@ async function countDown() {
   if (clockMax === 0) {
     $(".word-submit").hide();
     clearInterval(timer);
+    $(".timer").hide();
     await postScore(score);
 
   }
