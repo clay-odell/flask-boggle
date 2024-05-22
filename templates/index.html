@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/boggle.css">
+    <link rel="stylesheet" href="/static/boggle.css" />
     <title>Flask Boggle</title>
   </head>
   <body>
@@ -27,16 +27,18 @@
       <div id="scoreboard">
         <p class="score"></p>
         <p class="timer"></p>
+        <p class="highscore">High Score:
+            {{ highscore }} in {{ attempts }} attempts
+        </p>
       </div>
       <div id="msg-section">
         <p class="msg"></p>
       </div>
       <div id="word-list">
         <ul class="user-list">
-            <h3>User Wordlist</h3>
+          <h3>User Wordlist</h3>
         </ul>
       </div>
-
     </section>
     <script src="https://unpkg.com/axios@1.6.8/dist/axios.min.js"></script>
     <script src="https://unpkg.com/jquery"></script>

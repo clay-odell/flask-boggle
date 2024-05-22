@@ -1,9 +1,11 @@
 let score = 0;
-let clockMax = 60;
+let clockMax = 15;
 let timer = setInterval(countDown, 1000);
+let words = new Set();
+let board = $("#board");
 
-function addTimerCountdown(){
-    $(".timer").text(`Time Remaining: ${clockMax} seconds.`)
+function addTimerCountdown() {
+  $(".timer").text(`Time Remaining: ${clockMax} seconds.`);
 }
 
 function userWordListAdd(word) {
@@ -22,7 +24,18 @@ function scoreBoard() {
 
 $(".word-submit").on("submit", async function (evt) {
   evt.preventDefault();
-  const word = $("#word-input").val();
+  const $word = $("#word-input");
+  let word = $word.val();
+  if (!word) return;
+
+  if (words.has(word)) {
+    $word.val("");
+    msgAppend(`${word} can only be used once.`, "msg");
+    return;
+  }
+
+  
+
   const resp = await axios.get("/word-submit", { params: { word: word } });
   let msgResult = resp.data.result;
   if (msgResult === "not-word") {
@@ -36,15 +49,28 @@ $(".word-submit").on("submit", async function (evt) {
     userWordListAdd(word);
     msgAppend(`Congrats! ${word} is a valid word`, "success");
     score += word.length;
+    words.add(word);
     scoreBoard();
   }
+  $word.val("");
 });
 
-async function countDown(){
-    clockMax -= 1;
-    addTimerCountdown();
-    if (clockMax === 0){
-        clearInterval(timer);
-        msgAppend(`FINAL SCORE is ${score}`, "score")
-    }
+async function countDown() {
+  clockMax -= 1;
+  addTimerCountdown();
+  if (clockMax === 0) {
+    $(".word-submit").hide();
+    clearInterval(timer);
+    await postScore(score);
+
+  }
+}
+async function postScore(score){
+   const response = await axios.post("/post-score", {score: score});
+   if (response.data.newRecord){
+    msgAppend(`New Record: ${score}`, "msg");
+    $(".highscore").text(`High Score: ${score}`);
+    } else {
+    msgAppend(`Final Score: ${score}`, "msg")
+   }
 }
